@@ -52,6 +52,7 @@ def main():
         'whisper_prompt': os.environ.get('WHISPER_PROMPT', ''),
     }
 
+
     if openai_config['enable_functions'] and not functions_available:
         logging.error(f'ENABLE_FUNCTIONS is set to true, but the model {model} does not support it. '
                         f'Please set ENABLE_FUNCTIONS to false or use a model that supports it.')
