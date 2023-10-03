@@ -11,8 +11,7 @@ import threading
 
 
 
-openai.api_key  = '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'
-set_api_key("6193d79da37c15477df5f9837d04d9a5")
+
 
 
 def get_completion_from_messages(messages, model="gpt-4", temperature=0):
