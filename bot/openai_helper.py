@@ -353,7 +353,14 @@ class OpenAIHelper:
         Resets the conversation history.
         """
         if content == '':
-            content = self.config['assistant_prompt']
+            name = 'Mario'
+            content =   f"""
+                        You are a Troubleshooting systems called {name}, which works for EURAC research system, /
+                        you will talk to people trying to solve the issues with their PV systems, introduce yourself as {name},/
+                        you also can provide the user some insights from his PV system generation,/
+                        the generation of this PV system is as following [3237.803, 3890.261, 4388.138] in Kwh./
+                        now you can talk with the client and if he asks give him some information about the generation of his system.
+                        """
         self.conversations[chat_id] = [{"role": "system", "content": content}]
 
     def __max_age_reached(self, chat_id) -> bool:
