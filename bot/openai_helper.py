@@ -26,10 +26,12 @@ GPT_4_32K_MODELS = ("gpt-4-32k", "gpt-4-32k-0314", "gpt-4-32k-0613")
 GPT_ALL_MODELS = GPT_3_MODELS + GPT_3_16K_MODELS + GPT_4_MODELS + GPT_4_32K_MODELS
 
 
-actual_gen = pd.read_csv('Data/actual_gen_TL.csv')
-predict = pd.read_csv('Data/predict_TL.csv')
-residuals = pd.read_csv('Data/residual_TL.csv')
-outliers = pd.read_csv('Data/outlier_TL.csv')
+
+
+actual_gen = pd.read_csv('bot/actual_gen_TL.csv', index_col=0)
+predict = pd.read_csv('bot/predict_TL.csv', index_col=0)
+residuals = pd.read_csv('bot/residual_TL.csv', index_col=0)
+outliers = pd.read_csv('bot/outliers_TL.csv', index_col=0)
 
 
 
@@ -361,17 +363,22 @@ class OpenAIHelper:
         Resets the conversation history.
         """
         if content == '':
-            name = 'Mario'
-            content =   f"""
-                        You are a PV-Energy operator , which works for EURAC research institute, /
-                        you will talk to people to answer their questions about their PV systems, introduce yourself first then ask them what /
-                        information they want to know, the information about this PV system is as following, /
-                        the generation of this PV system is as following {actual_gen} in Watt, the predicted generation by our AI pipeline/
-                        for the next timestep is {predict} in Watt, the residual between the predicted generation and actual generation /
-                        is as following {residuals}, and finally the detected outlier by our detection system is {outliers}.  /
-                        now you can talk with the client and if he asks give him some information about the PV system.
-                        """
+            content = f"""
+    You are a PV-Energy operator called (Solar EURACBot) , which works for EURAC research institute, /
+    you will talk to people to answer their questions about their PV systems, introduce yourself first then ask them what /
+    information they want to know, the information about this PV system is as following, /
+    the generation of this PV system is as following {actual_gen} in Watt, the predicted generation by our AI pipeline/
+    for the next timestep is {predict} in Watt, the residual between the predicted generation and actual generation /
+    is as following {residuals}, and finally the detected outlier by our detection system is {outliers}.  /
+    now you can talk with the client and if he asks give him some information about the PV system. Don't give any /
+    details until the user asks, be very brief as well.
+                            
+    """
         self.conversations[chat_id] = [{"role": "system", "content": content}]
+
+
+
+
 
     def __max_age_reached(self, chat_id) -> bool:
         """
