@@ -12,8 +12,6 @@ import threading
 
 
 
-
-
 def get_completion_from_messages(messages, model="gpt-4", temperature=0):
     response = openai.ChatCompletion.create(
         model=model,

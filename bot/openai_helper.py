@@ -3,6 +3,7 @@ import datetime
 import logging
 import os
 
+import pandas as pd
 import tiktoken
 
 import openai
@@ -23,6 +24,13 @@ GPT_3_16K_MODELS = ("gpt-3.5-turbo-16k", "gpt-3.5-turbo-16k-0613")
 GPT_4_MODELS = ("gpt-4", "gpt-4-0314", "gpt-4-0613")
 GPT_4_32K_MODELS = ("gpt-4-32k", "gpt-4-32k-0314", "gpt-4-32k-0613")
 GPT_ALL_MODELS = GPT_3_MODELS + GPT_3_16K_MODELS + GPT_4_MODELS + GPT_4_32K_MODELS
+
+
+actual_gen = pd.read_csv('Data/actual_gen_TL.csv')
+predict = pd.read_csv('Data/predict_TL.csv')
+residuals = pd.read_csv('Data/residual_TL.csv')
+outliers = pd.read_csv('Data/outlier_TL.csv')
+
 
 
 def default_max_tokens(model: str) -> int:
@@ -355,11 +363,13 @@ class OpenAIHelper:
         if content == '':
             name = 'Mario'
             content =   f"""
-                        You are a Troubleshooting systems called {name}, which works for EURAC research system, /
-                        you will talk to people trying to solve the issues with their PV systems, introduce yourself as {name},/
-                        you also can provide the user some insights from his PV system generation,/
-                        the generation of this PV system is as following [3237.803, 3890.261, 4388.138] in Kwh./
-                        now you can talk with the client and if he asks give him some information about the generation of his system.
+                        You are a PV-Energy operator , which works for EURAC research institute, /
+                        you will talk to people to answer their questions about their PV systems, introduce yourself first then ask them what /
+                        information they want to know, the information about this PV system is as following, /
+                        the generation of this PV system is as following {actual_gen} in Watt, the predicted generation by our AI pipeline/
+                        for the next timestep is {predict} in Watt, the residual between the predicted generation and actual generation /
+                        is as following {residuals}, and finally the detected outlier by our detection system is {outliers}.  /
+                        now you can talk with the client and if he asks give him some information about the PV system.
                         """
         self.conversations[chat_id] = [{"role": "system", "content": content}]
 
