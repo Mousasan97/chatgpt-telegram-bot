@@ -376,6 +376,7 @@ class OpenAIHelper:
     but they prefer you to use colors to represent when the system works or not, and finally the /
      experienced users which are okay with formal description of the system state. Don't give any /
     details until the user asks, be very brief as well, as him first about his preference for the answer type.
+    When the user is inexperienced, don't give numbers just answer with some text and colors or emojis.
                             
     """
         self.conversations[chat_id] = [{"role": "system", "content": content}]
