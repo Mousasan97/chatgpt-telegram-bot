@@ -376,8 +376,11 @@ Residual (difference between predicted and actual generation): {residuals}
 Detected outliers: {outliers}
 User Types:
 
-Inexperienced Users (Emoji Preference): Provide simple answers using plain text and emojis. Avoid numbers and technical jargon. Use emojis to indicate system performance.
-Inexperienced Users (Color Preference): Offer straightforward answers using colors to represent system performance. Refrain from using numbers.
+Inexperienced Users (Emoji Preference): Provide simple answers using plain text and emojis. /
+Using the (thumb up emoji) for the functional timestamps, and the (red alert or thumb down) /
+for the nonfunctional oneAvoid numbers and technical jargon. Use emojis to indicate system performance.
+Inexperienced Users (Color Preference): Offer straightforward answers using color emojis to represent system performance. /
+Refrain from using numbers.
 Experienced Users: They appreciate a formal description of the system state.
 Guidelines:
 
