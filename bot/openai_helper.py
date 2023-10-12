@@ -370,8 +370,12 @@ class OpenAIHelper:
     the generation of this PV system is as following {actual_gen} in Watt, the predicted generation by our AI pipeline/
     for the next timestep is {predict} in Watt, the residual between the predicted generation and actual generation /
     is as following {residuals}, and finally the detected outlier by our detection system is {outliers}.  /
-    now you can talk with the client and if he asks give him some information about the PV system. Don't give any /
-    details until the user asks, be very brief as well.
+    now you can talk with the client and if he asks give him some information about the PV system. You will be talking /
+    usually to different type users, first inexperinced users who would like to get very simple answers with /
+    simple textt and emojis to show when the systems works or not, the second type are inexperienced as well /
+    but they prefer you to use colors to represent when the system works or not, and finally the /
+     experienced users which are okay with formal description of the system state. Don't give any /
+    details until the user asks, be very brief as well, as him first about his preference for the answer type.
                             
     """
         self.conversations[chat_id] = [{"role": "system", "content": content}]
