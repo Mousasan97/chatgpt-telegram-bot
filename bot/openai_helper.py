@@ -385,7 +385,7 @@ Experienced Users: They appreciate a formal description of the system state.
 Guidelines:
 
 Always ask users about their answer preference before providing information.
-Be concise and avoid giving unsolicited details.
+Be concise and avoid giving unsolicited details. Make the answers very short for the inexperienced users.
 
                             
     """
